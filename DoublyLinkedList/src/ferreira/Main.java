@@ -20,24 +20,30 @@ public class Main {
         list.addToFront(jane);
         list.addToFront(john);
         list.addToFront(filipe);
-        list.addToFront(mara);
+//
+//        System.out.println("Size: " + list.getSize());
+//        list.printList();
+//
+//        //Add a new one to the end
+//        list.addToEnd(jimy);
+//        System.out.println("\nSize: " + list.getSize());
+//        list.printList();
+//
+//        //Remove one from the front
+//        list.removeFromFront();
+//        System.out.println("\nSize: " + list.getSize());
+//        list.printList();
+//
+//        //Remove one from the end
+//        list.removeFromEnd();
+//        System.out.println("\nSize: " + list.getSize());
+//        list.printList();
 
-        System.out.println("Size: " + list.getSize());
-        list.printList();
+          list.addBefore(john, mara);
+          list.printList();
 
-        //Add a new one to the end
-        list.addToEnd(jimy);
-        System.out.println("\nSize: " + list.getSize());
-        list.printList();
-
-        //Remove one from the front
-        list.removeFromFront();
-        System.out.println("\nSize: " + list.getSize());
-        list.printList();
-
-        //Remove one from the end
-        list.removeFromEnd();
-        System.out.println("\nSize: " + list.getSize());
+          System.out.println("\n");
+        list.addBefore(mara, jimy);
         list.printList();
 
     }
