@@ -2,7 +2,7 @@ package ferreira;
 
 import java.util.NoSuchElementException;
 
-public class ArrayQueue {
+public class CircularQueue {
 
     /**
      * Array to hold the data
@@ -13,29 +13,41 @@ public class ArrayQueue {
     private int front;
     private int back;
 
-    public ArrayQueue(int capacity) {
+    public CircularQueue(int capacity) {
         queue = new Employee[capacity];
     }
 
     /**
-     * Takes an eploye and add to the end of the Queue
+     * Takes an employee and add to the end of the Queue
      * @param employee
      */
     public void add(Employee employee) {
-        if (back == queue.length) {
+
+        if (size() == queue.length) {
+            int items = size();
             Employee[] newArray = new Employee[2 * queue.length];
-            System.arraycopy(queue, 0, newArray, 0, queue.length);
+
+            //Copy the array unwrapping it
+            System.arraycopy(queue, front, newArray, 0, queue.length - front);
+            System.arraycopy(queue, 0, newArray, queue.length - front, back );
+
             queue = newArray;
+            front = 0;
+            back = items;
         }
 
         queue[back] = employee;
-        back++;
+
+        //Check if the array still have space if not will use the front of it
+        if (back < queue.length - 1){
+            back++;
+        } else {
+            back = 0;
+        }
     }
 
     /**
-     * Remove increment the front so it does no longer points to the that element in
-     * the front and now the second element is the first since front was incremented
-     * then null the slot where the element was referred
+     * Remove an element from the front of the queue
      * @return the object that was nulled and is not longer the first
      */
     public Employee remove() {
@@ -49,6 +61,8 @@ public class ArrayQueue {
         if (size() == 0) {
             front = 0;
             back = 0;
+        } else if (front == queue.length) {
+            front = 0;
         }
 
         return employee;
@@ -70,16 +84,34 @@ public class ArrayQueue {
      * @return size
      */
     public int size() {
-        return back - front;
+        if(front <= back) {
+            return back - front;
+        }
+        else {
+            return back - front + queue.length;
+        }
+
     }
 
     /**
      * Just to print the Queue
      */
     public void printQueue() {
-        for (int i = front; i < back; i++) {
-            System.out.println(queue[i]);
+        if (front <= back) {
+            for (int i = front; i < back; i++) {
+                System.out.println(queue[i]);
+            }
         }
+        else {
+            for (int i = front; i < queue.length; i++) {
+                System.out.println(queue[i]);
+            }
+            for (int i = 0; i < back; i++) {
+                System.out.println(queue[i]);
+            }
+        }
+
+
     }
 
 }

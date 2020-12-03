@@ -1,7 +1,5 @@
 package ferreira;
 
-import java.util.Queue;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -11,10 +9,12 @@ public class Main {
         Employee maker = new Employee("Maker", "Teick", 22);
         Employee walker = new Employee("Walker", "Bloga", 3245);
 
-        ArrayQueue queue = new ArrayQueue(10);
+        CircularQueue queue = new CircularQueue(10);
 
         queue.add(juca);
+        queue.remove();
         queue.add(maker);
+        queue.remove();
         queue.add(bulla);
         queue.add(walker);
 
