@@ -1,31 +1,35 @@
 package ferreira;
 
-public class Employee {
+import java.util.Objects;
 
-    private String firstName;
-    private String lastName;
+public class Employee {
+    /**
+     * Just a simple employee Class with field such as name lastname and id
+     */
+    private String fistName;
+    private String lasName;
     private int id;
 
-    public Employee(String firstName, String lastName, int id) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Employee(String fistName, String lasName, int id) {
+        this.fistName = fistName;
+        this.lasName = lasName;
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFistName() {
+        return fistName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFistName(String fistName) {
+        this.fistName = fistName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLasName() {
+        return lasName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLasName(String lasName) {
+        this.lasName = lasName;
     }
 
     public int getId() {
@@ -40,30 +44,23 @@ public class Employee {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Employee employee = (Employee) o;
-
-        if (id != employee.id) return false;
-        if (!firstName.equals(employee.firstName)) return false;
-        return lastName.equals(employee.lastName);
+        return id == employee.id &&
+                Objects.equals(fistName, employee.fistName) &&
+                Objects.equals(lasName, employee.lasName);
     }
 
     @Override
     public int hashCode() {
-        int result = firstName.hashCode();
-        result = 31 * result + lastName.hashCode();
-        result = 31 * result + id;
-        return result;
+        return Objects.hash(fistName, lasName, id);
     }
 
     @Override
     public String toString() {
         return "Employee{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                "fistName='" + fistName + '\'' +
+                ", lasName='" + lasName + '\'' +
                 ", id=" + id +
                 '}';
     }
-
-
 }
