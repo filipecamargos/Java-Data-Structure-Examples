@@ -61,12 +61,18 @@ public class Tree {
             subTreeRoot.setRightChild(delete(subTreeRoot.getRightChild(), value));
         }
         else {
+            //The node to be deleted has 0 or 1 Child
             if (subTreeRoot.getLeftChild() == null) {
                 return subTreeRoot.getRightChild();
             }
             else if (subTreeRoot.getRightChild() == null) {
                 return subTreeRoot.getLeftChild();
             }
+            //When the node to be deleted has 2 children
+            subTreeRoot.setNumber(subTreeRoot.getRightChild().min()); //replace with smallest from the right
+            //Delete the node that had the smallest value in the right
+            subTreeRoot.setRightChild(delete(subTreeRoot.getRightChild(), subTreeRoot.getNumber()));
+
         }
 
         return subTreeRoot;

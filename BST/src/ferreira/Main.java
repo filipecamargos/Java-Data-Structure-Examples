@@ -24,5 +24,12 @@ public class Main {
 
         //Check min and max methods
         System.out.println("Min = " + numberTree.min() + "\n" + "Max = " + numberTree.max());
+
+        //Delete method
+        numberTree.delete(23);
+
+        //Print it again
+        numberTree.tranversingInOrder();
+
     }
 }
